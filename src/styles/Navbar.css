@@ -1,0 +1,38 @@
+
+.navbar {
+    background-color: #190c6261;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .navbar h2 {
+    margin: 0;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .navbar li {
+    display: inline;
+    margin: 0 1rem;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+  }
+  /* src/components/Footer.css */
+
+.footer {
+  background-color: #190c6261;
+  color: white;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  

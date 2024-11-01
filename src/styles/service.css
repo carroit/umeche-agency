@@ -1,0 +1,102 @@
+/* src/components/Services.module.css */
+.services {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .serviceItem {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+  
+  .serviceItem p {
+    margin-top: 0.5rem;
+  }
+
+.requirements {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .requirements ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .requirements li {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+  }
+  /* src/components/Countries.module.css */
+.countries {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .countryItem img {
+    width: 50px;
+    height: auto;
+  }
+  
+  .countryItem p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+  /* src/components/Register.module.css */
+.register {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  form {
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  label {
+    display: block;
+    margin: 1rem 0;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  /* src/styles/AnimatedCard.css */
+.card {
+    max-width: 300px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+ }
+ .card-icon {
+    font-size: 2rem;
+ }
+ .card-title {
+    color: #1a202c;
+ }
+ .card-description {
+    font-size: 0.9rem;
+    color: #4a5568;
+ }
+ 
+  
+  
