@@ -1,19 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Menu as MenuIcon, X } from 'lucide-react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import logo from'../assets/WhatsApp Image 2024-11-01 at 19.13.56_0e5fa1de.jpg';
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
+// Navigation Component (same as About page)
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const menuItems = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+    { to: "/services", label: "Services" },
+    { to: "/contact", label: "Contact" }
+  ];
+
+  return (
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white shadow-md text-gray-800' : 'bg-transparent text-white'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between items-center h-20">
+          <RouterLink to="/" className="flex items-center">
+            <img 
+              src={logo}
+              alt="Umeche Agency Logo" 
+              className="h-16 w-auto"
+              style={{ position: 'relative', zIndex: 10 }}
+            />
+          </RouterLink>
+
+          <div className="hidden md:flex space-x-8">
+            {menuItems.map(({ to, label }) => (
+              <RouterLink
+                key={to}
+                to={to}
+                className={`cursor-pointer font-medium transition-colors ${
+                  scrolled ? 'text-gray-800 hover:text-green-800' : 'text-white hover:text-green-100'
+                }`}
+              >
+                {label}
+              </RouterLink>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2"
+          >
+            {isOpen ? <X /> : <MenuIcon />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {isOpen && (
+          <div className="md:hidden bg-white rounded-lg shadow-lg mt-2 p-4">
+            {menuItems.map(({ to, label }) => (
+              <RouterLink
+                key={to}
+                to={to}
+                className="block py-2 text-gray-800 hover:text-green-800"
+                onClick={() => setIsOpen(false)}
+              >
+                {label}
+              </RouterLink>
+            ))}
+          </div>
+        )}
+      </div>
+    </nav>
+  );
 };
 
 const Contact = () => {
@@ -22,9 +89,6 @@ const Contact = () => {
     phone: '',
     desiredCountry: '',
     gender: '',
-    maritalStatus: '',
-    children: '',
-    language: '',
     workExperience: '',
     profilePhoto: null,
     idPhoto: null,
@@ -46,32 +110,34 @@ const Contact = () => {
 
   const contactInfo = [
     { icon: Phone, title: "Phone", info: "+1234567890" },
-    { icon: Mail, title: "Email", info: "contact@ahlenagency.com" },
+    { icon: Mail, title: "Email", info: "contact@umecheagency.com" },
     { icon: MapPin, title: "Location", info: "Dubai, UAE" }
   ];
 
   return (
-    <div className="min-h-screen pt-16">
-      <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-32">
+    <div className="min-h-screen">
+      <Navigation />
+      
+      {/* Hero Section */}
+      <section className="relative min-h-screen">
+        <div className="absolute inset-0 bg-gradient-to-r from-green-900 to-gray-800 opacity-90" />
+        <div className="relative max-w-7xl mx-auto px-4 py-32 flex items-center min-h-screen">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="text-center max-w-3xl mx-auto"
+            transition={{ duration: 1 }}
+            className="text-center max-w-3xl mx-auto text-white"
           >
             <h1 className="text-5xl font-bold mb-6">Contact Us</h1>
             <p className="text-xl mb-8">Let's start your journey together</p>
           </motion.div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div 
             className="grid md:grid-cols-3 gap-8 mb-16"
-            variants={stagger}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
@@ -79,25 +145,27 @@ const Contact = () => {
             {contactInfo.map((item, index) => (
               <motion.div
                 key={index}
-                variants={fadeInUp}
-                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className="bg-green-50 rounded-xl p-8 text-center"
               >
-                <item.icon className="w-12 h-12 mx-auto mb-4 text-blue-500" />
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <item.icon className="w-12 h-12 mx-auto mb-4 text-green-800" />
+                <h3 className="text-xl font-semibold mb-2 text-green-900">{item.title}</h3>
                 <p className="text-gray-600">{item.info}</p>
               </motion.div>
             ))}
           </motion.div>
 
           <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8"
           >
-            <h2 className="text-2xl font-bold mb-6 text-center">Get Started</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center text-green-900">Get Started</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Form fields remain the same but styled to match the green theme */}
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
@@ -105,7 +173,7 @@ const Contact = () => {
                     type="text"
                     name="name"
                     onChange={handleChange}
-                    className="w-full p-3 border rounded-lg"
+                    className="w-full p-3 border rounded-lg focus:ring-green-500 focus:border-green-500"
                     required
                   />
                 </div>
@@ -115,11 +183,13 @@ const Contact = () => {
                     type="tel"
                     name="phone"
                     onChange={handleChange}
-                    className="w-full p-3 border rounded-lg"
+                    className="w-full p-3 border rounded-lg focus:ring-green-500 focus:border-green-500"
                     required
                   />
                 </div>
               </div>
+
+              
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
