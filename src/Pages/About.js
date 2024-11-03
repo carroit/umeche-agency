@@ -1,27 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Users,  Star,  Clock,Building,Heart,
-   Menu as MenuIcon,X}  from 'lucide-react';
-   import { Link as ScrollLink } from 'react-scroll';
-   import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Heart, Star, Users, Building, Clock, Menu as MenuIcon, X } from 'lucide-react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import logo from'../assets/WhatsApp Image 2024-11-01 at 19.13.56_0e5fa1de.jpg';
 
-// Reusing the animation variants from Home
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
-
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
- // Navigation Component
- const Navigation = () => {
+// Navigation Component
+const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -35,18 +19,11 @@ const stagger = {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const routeLinks = [
+  const menuItems = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
-    { to: "/gallery", label: "Gallery" }
-  ];
-
-  const scrollLinks = [
-    { to: "experience", label: "Experience" },
-    { to: "services", label: "Services" },
-    { to: "requirements", label: "Requirements" },
-    { to: "countries", label: "Countries" },
-    { to: "contact", label: "Contact" }
+    { to: "/services", label: "Services" },
+    { to: "/contact", label: "Contact" }
   ];
 
   return (
@@ -54,88 +31,59 @@ const stagger = {
       scrolled ? 'bg-white shadow-md text-gray-800' : 'bg-transparent text-white'
     }`}>
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <RouterLink to="/" className="text-xl font-bold">Ahlen Agency</RouterLink>
-          </div>
-          
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md hover:bg-opacity-20 hover:bg-white focus:outline-none"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
-            </button>
+        <div className="flex justify-between items-center h-20">
+          <RouterLink to="/" className="flex items-center">
+            <img 
+              src={logo}
+               alt="Umeche Agency Logo" 
+              className="h-16 w-auto"
+              style={{ position: 'relative', zIndex: 10 }}
+            />
+          </RouterLink>
+
+          <div className="hidden md:flex space-x-8">
+            {menuItems.map(({ to, label }) => (
+              <RouterLink
+                key={to}
+                to={to}
+                className={`cursor-pointer font-medium transition-colors ${
+                  scrolled ? 'text-gray-800 hover:text-green-800' : 'text-white hover:text-green-100'
+                }`}
+              >
+                {label}
+              </RouterLink>
+            ))}
           </div>
 
-          {/* Desktop menu */}
-          <ul className="hidden md:flex space-x-8">
-            {routeLinks.map(({ to, label }) => (
-              <li key={to}>
-                <RouterLink
-                  to={to}
-                  className="cursor-pointer hover:opacity-75 transition-opacity"
-                >
-                  {label}
-                </RouterLink>
-              </li>
-            ))}
-            {isHomePage && scrollLinks.map(({ to, label }) => (
-              <li key={to}>
-                <ScrollLink
-                  to={to}
-                  smooth={true}
-                  duration={500}
-                  className="cursor-pointer hover:opacity-75 transition-opacity"
-                  spy={true}
-                  activeClass="font-bold"
-                >
-                  {label}
-                </ScrollLink>
-              </li>
-            ))}
-          </ul>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2"
+          >
+            {isOpen ? <X /> : <MenuIcon />}
+          </button>
         </div>
 
         {/* Mobile menu */}
-        <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
-          <ul className="px-2 pt-2 pb-3 space-y-1">
-            {routeLinks.map(({ to, label }) => (
-              <li key={to}>
-                <RouterLink
-                  to={to}
-                  className="block px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white cursor-pointer"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {label}
-                </RouterLink>
-              </li>
+        {isOpen && (
+          <div className="md:hidden bg-white rounded-lg shadow-lg mt-2 p-4">
+            {menuItems.map(({ to, label }) => (
+              <RouterLink
+                key={to}
+                to={to}
+                className="block py-2 text-gray-800 hover:text-green-800"
+                onClick={() => setIsOpen(false)}
+              >
+                {label}
+              </RouterLink>
             ))}
-            {isHomePage && scrollLinks.map(({ to, label }) => (
-              <li key={to}>
-                <ScrollLink
-                  to={to}
-                  smooth={true}
-                  duration={500}
-                  className="block px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white cursor-pointer"
-                  onClick={() => setIsOpen(false)}
-                  spy={true}
-                  activeClass="font-bold"
-                >
-                  {label}
-                </ScrollLink>
-              </li>
-            ))}
-          </ul>
-        </div>
+          </div>
+        )}
       </div>
     </nav>
   );
 };
 
-// About Page Component
-export const About = () => {
+const About = () => {
   const values = [
     { icon: Heart, title: "Integrity", description: "Upholding the highest standards in all our actions" },
     { icon: Star, title: "Excellence", description: "Striving for excellence in everything we do" },
@@ -144,99 +92,90 @@ export const About = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
+      <Navigation />
+      
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-32">
+      <section className="relative min-h-screen">
+        <div className="absolute inset-0 bg-gradient-to-r from-green-900 to-gray-800 opacity-90" />
+        <div className="relative max-w-7xl mx-auto px-4 py-32 flex items-center min-h-screen">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="text-center max-w-3xl mx-auto"
+            transition={{ duration: 1 }}
+            className="text-center max-w-3xl mx-auto text-white"
           >
-            <h1 className="text-5xl font-bold mb-6">About Ahlen Agency</h1>
+            <h1 className="text-5xl font-bold mb-6">About Umeche Agency</h1>
             <p className="text-xl mb-8">Creating meaningful connections across borders</p>
           </motion.div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
       {/* Mission Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            variants={stagger}
-            initial="initial"
-            whileInView="animate"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-3xl mx-auto text-center"
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl font-bold mb-8">Our Mission</motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-gray-600">
-              At AHLEN Agency, we are dedicated to connecting talented, motivated, and skilled workers 
+            <h2 className="text-3xl font-bold mb-8 text-green-900">Our Mission</h2>
+            <p className="text-lg text-gray-600">
+              At Umeche Agency, we are dedicated to connecting talented, motivated, and skilled workers 
               with businesses across the globe. Our mission is to foster high-quality foreign business 
               relations and provide exceptional human resource services that create opportunities for all.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            variants={stagger}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <Clock className="w-16 h-16 mx-auto mb-6 text-blue-500" />
-            <motion.h2 variants={fadeInUp} className="text-3xl font-bold mb-6">10+ Years of Excellence</motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-gray-600 max-w-3xl mx-auto">
-              With over a decade of experience, we have successfully placed thousands of skilled 
-              professionals in rewarding positions across the globe, building lasting relationships 
-              and creating success stories.
-            </motion.p>
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+            className="text-3xl font-bold text-center mb-12 text-green-900"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
           >
             Our Values
           </motion.h2>
-          <motion.div 
-            className="grid md:grid-cols-4 gap-8"
-            variants={stagger}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
+          <div className="grid md:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                variants={fadeInUp}
-                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
               >
-                <value.icon className="w-12 h-12 mx-auto mb-4 text-blue-500" />
-                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <value.icon className="w-12 h-12 mx-auto mb-4 text-green-800" />
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 text-center">{value.title}</h3>
+                <p className="text-gray-600 text-center">{value.description}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
+      </section>
+
+      {/* Quote Section */}
+      <section className="py-20 bg-green-900 text-white">
+        <motion.div 
+          className="max-w-4xl mx-auto px-4 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <Clock className="w-12 h-12 mx-auto mb-8 text-yellow-400" />
+          <blockquote className="text-2xl font-medium italic mb-8">
+            "10+ Years of Excellence in Global Workforce Solutions"
+          </blockquote>
+          <div className="w-24 h-1 bg-white mx-auto"></div>
+        </motion.div>
       </section>
     </div>
   );
 };
-
 
 export default About;
