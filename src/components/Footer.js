@@ -4,81 +4,88 @@ import '../styles/Home.css';
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-600 text-white py-12">
+    <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {/* Management & Relations Column */}
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-semibold mb-4">Management & Relations</h3>
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold mb-6 text-green-400">
+              Management & Relations
+            </h3>
             <div className="space-y-3">
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Users className="w-4 h-4" />
-                <span>MGR: +251 936335656 (MEKDES CHUCHA)</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Users className="w-4 h-4" />
-                <span>INFO: +251 936445656 (MAHLET ASCHALEW)</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Globe className="w-4 h-4" />
-                <span>FOREIGN REL: +251 936793636 (ABU GHUFRAN)</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Users className="w-4 h-4" />
-                <span>CEO: +251 911571166 (ABDUREZAK)</span>
-              </p>
+              <div className="flex items-center space-x-2">
+                <Users className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">MGR: +251 936335656 (MEKDES CHUCHA)</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Users className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">INFO: +251 936445656 (MAHLET ASCHALEW)</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Globe className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">FOREIGN REL: +251 936793636 (ABU GHUFRAN)</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Users className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">CEO: +251 911571166 (ABDUREZAK)</p>
+              </div>
             </div>
           </div>
 
           {/* Contact Information Column */}
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold mb-6 text-green-400">
+              Contact Information
+            </h3>
             <div className="space-y-3">
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Phone className="w-4 h-4" />
-                <span>+251-912-086678</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Phone className="w-4 h-4" />
-                <span>+251-910-758130</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Mail className="w-4 h-4" />
-                <span>umecheumeche@gmail.com</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Mail className="w-4 h-4" />
-                <span>ahlenagencym@gmail.com</span>
-              </p>
+              <div className="flex items-center space-x-2">
+                <Phone className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">+251-912-086678</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Phone className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">+251-910-758130</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Mail className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">umecheumeche@gmail.com</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Mail className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">umecheumechem@gmail.com</p>
+              </div>
             </div>
           </div>
 
           {/* Location Column */}
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-semibold mb-4">Location</h3>
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold mb-6 text-green-400">
+              Location
+            </h3>
             <div className="space-y-3">
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <MapPin className="w-4 h-4" />
-                <span>ETHIOPIA</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <MapPin className="w-4 h-4" />
-                <span>ADDIS ABABA</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <MapPin className="w-4 h-4" />
-                <span>Awtobistera yologiya Building</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <MapPin className="w-4 h-4" />
-                <span>6th Floor, Office No. 619</span>
-              </p>
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">ETHIOPIA</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">ADDIS ABABA</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">Awtobistera yologiya Building</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-5 h-5 text-green-400" />
+                <p className="text-gray-300">6th Floor, Office No. 619</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-blue-400 text-center">
-          <p className="text-sm">
+        {/* Copyright Section */}
+        <div className="border-t border-gray-800 pt-8">
+          <p className="text-center text-gray-400">
             Copyright © {new Date().getFullYear()} UMECHE AGENCY. All rights reserved.
           </p>
         </div>

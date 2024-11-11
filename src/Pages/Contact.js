@@ -23,7 +23,9 @@ const Navigation = () => {
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
     { to: "/services", label: "Services" },
-    { to: "/contact", label: "Contact" }
+    { to: "/contact", label: "Contact" },
+    { to: "/gallery", label: "Gallery" }
+
   ];
 
   return (
