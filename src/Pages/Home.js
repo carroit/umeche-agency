@@ -4,7 +4,9 @@ import { Users, Briefcase, Globe, FileCheck, MapPin, ArrowRight, Star, Clock, Me
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import logo from'../assets/WhatsApp Image 2024-11-01 at 19.13.56_0e5fa1de.jpg';
-import '../styles/Home.css'
+import '../styles/Home.css';
+import '../components/Footer';
+import Footer from '../components/Footer';
 
 
 const Navigation = () => {
@@ -25,7 +27,9 @@ const Navigation = () => {
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
     { to: "/services", label: "Services" },
-    { to: "/contact", label: "Contact" }
+    { to: "/contact", label: "Contact" },
+    { to: "/gallery", label: "Gallery" }
+
   ];
 
   return (
@@ -208,6 +212,7 @@ const Home = () => {
           <div className="w-24 h-1 bg-white mx-auto"></div>
         </motion.div>
       </section>
+      <Footer/>
     </div>
   );
 };
